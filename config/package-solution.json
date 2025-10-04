@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "self-evaluation-client-side-solution",
+    "id": "920d6f29-419d-48d7-bafd-f9c1168bcbbe",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.21.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "SelfEvaluation description"
+      },
+      "longDescription": {
+        "default": "SelfEvaluation description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "self-evaluation Feature",
+        "description": "The feature that activates elements of the self-evaluation solution.",
+        "id": "11b6a1e5-8ded-4d5e-95ab-92ef31460e07",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/self-evaluation.sppkg"
+  }
+}

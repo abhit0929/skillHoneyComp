@@ -1,0 +1,137 @@
+@import '~@fluentui/react/dist/sass/References.scss';
+
+.selfEvaluation {
+  overflow: hidden;
+  padding: 2rem 1.5rem 3rem;
+  background-color: "[theme:white, default:#ffffff]";
+  color: "[theme:bodyText, default:#323130]";
+  color: var(--bodyText);
+
+  &.teams {
+    font-family: $ms-font-family-fallbacks;
+  }
+}
+
+.dark {
+  background-color: "[theme:neutralLighterAlt, default:#f3f2f1]";
+}
+
+.header {
+  max-width: 960px;
+  margin: 0 auto 32px;
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.environmentMessage {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: "[theme:themePrimary, default:#0078d4]";
+}
+
+.heading {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+  color: "[theme:neutralPrimary, default:#323130]";
+}
+
+.description {
+  margin: 0;
+  max-width: 720px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: "[theme:neutralPrimary, default:#323130]";
+}
+
+.filterSection {
+  max-width: 960px;
+  margin: 0 auto 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filterLabel {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: "[theme:neutralSecondary, default:#605e5c]";
+}
+
+.filterList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filterButton {
+  border-radius: 999px;
+  border: 1px solid "[theme:neutralLight, default:#e1dfdd]";
+  background-color: transparent;
+  color: "[theme:bodyText, default:#323130]";
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover,
+  &:focus {
+    border-color: "[theme:neutralSecondary, default:#605e5c]";
+    outline: none;
+  }
+}
+
+.filterButtonActive {
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.honeycombWrapper {
+  max-width: 1200px;
+  margin: 32px auto 24px;
+}
+
+.entityLegend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 960px;
+  margin: 0 auto;
+  font-size: 13px;
+  color: "[theme:neutralPrimary, default:#323130]";
+}
+
+.entitySwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.entityLabel {
+  font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .heading {
+    font-size: 26px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .filterButton {
+    font-size: 13px;
+    padding: 6px 14px;
+  }
+}

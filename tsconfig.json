@@ -1,0 +1,40 @@
+{
+  "extends": "./node_modules/@microsoft/rush-stack-compiler-5.3/includes/tsconfig-web.json",
+  "compilerOptions": {
+     "target": "ES2019",
+    "forceConsistentCasingInFileNames": true,
+     "module": "CommonJS",
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "declaration": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "outDir": "lib",
+    "inlineSources": false,
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "esModuleInterop": true,
+    "strict": false
+,    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@microsoft"
+    ],
+    "types": [
+      "webpack-env"
+    ],
+     "lib": [
+      "es2015",
+      "es2016",
+      "es2017",
+      "dom",
+      "dom.iterable"
+    ],
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
+}

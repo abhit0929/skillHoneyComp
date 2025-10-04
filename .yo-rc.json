@@ -1,0 +1,18 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "18.20.8",
+    "sdksVersions": {},
+    "version": "1.21.1",
+    "libraryName": "self-evaluation",
+    "libraryId": "920d6f29-419d-48d7-bafd-f9c1168bcbbe",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "SelfEvaluation",
+    "solutionShortDescription": "SelfEvaluation description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
