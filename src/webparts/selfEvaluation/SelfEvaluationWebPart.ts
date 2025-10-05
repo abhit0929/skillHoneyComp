@@ -11,7 +11,7 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'SelfEvaluationWebPartStrings';
 import SelfEvaluation from './components/SelfEvaluation';
 import { ISelfEvaluationProps } from './components/ISelfEvaluationProps';
-
+import "../selfEvaluation/assets/global.css"; //"../assets/global.css";
 export interface ISelfEvaluationWebPartProps {
   description: string;
 }
