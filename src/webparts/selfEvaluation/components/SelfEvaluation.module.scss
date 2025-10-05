@@ -135,3 +135,11 @@
     padding: 6px 14px;
   }
 }
+
+div[data-automation-id="CanvasZone"]>div{
+	max-width: 100%!important;
+  }
+
+  .CanvasZone {
+	  max-width: none !important;
+  }

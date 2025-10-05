@@ -669,13 +669,10 @@ export default function HexagonalGrid({ activeEntity }: HexagonalGridProps) {
         skillsData={skills}
         entitiesData={entities}
       />
-      <div
-        className="relative w-full mx-auto h-[1000px] sm:h-[500px] lg:h-[1000px] overflow-hidden"
-        style={{ maxWidth: "100vw" }}
-      >
+      <div className="relative w-full mx-auto overflow-hidden" style={{ maxWidth: '100vw', paddingTop: `${(viewBox.height / viewBox.width) * 100}%` }}>
         <svg
           viewBox={`${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`}
-          className="w-full h-full transition-all duration-500 ease-in-out"
+          className="absolute inset-0 w-full h-full transition-all duration-500 ease-in-out"
           style={{ overflow: "hidden" }}
           preserveAspectRatio="xMidYMid meet"
         >
