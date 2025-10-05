@@ -28,6 +28,22 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
     };
     return borderColors[entityId] || "#000";
   };
+
+  // Hide SharePoint command bar while this web part is mounted by toggling a body class.
+  React.useEffect(() => {
+    try {
+      document.body.classList.add('shc-hide-commandbar');
+    } catch (e) {
+      // ignore in restricted environments
+    }
+    return () => {
+      try {
+        document.body.classList.remove('shc-hide-commandbar');
+      } catch (e) {
+        // ignore
+      }
+    };
+  }, []);
   return (
     <div
       className="relative min-h-screen overflow-x-hidden overflow-y-auto"

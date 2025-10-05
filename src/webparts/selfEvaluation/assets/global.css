@@ -135,3 +135,19 @@ body {
 .duration-500 {
   animation-duration: 0.5s;
 }
+
+/* Scoped helper to hide SharePoint command bar while our web part is present
+   Add class `shc-hide-commandbar` to <body> when you want to hide the element.
+   This keeps the rule page-scoped (only active while the web part mounts). */
+body.shc-hide-commandbar div.commandBarButtonHeightAndColor[aria-label="Command bar"],
+body.shc-hide-commandbar #spCommandBar,
+body.shc-hide-commandbar div.commandBarWrapper[aria-label="Command bar"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background-image: none !important;
+  background: transparent !important;
+}
