@@ -164,8 +164,85 @@ body.shc-hide-commandbar div.commandBarWrapper[aria-label="Command bar"] {
   box-sizing: border-box;
 }
 
+
 /* Responsive min-width helper for the centered inner container.
    Use by adding `shc-dynamic-min` to the inner container div. This
    replaces the inline JS minWidth approach and uses media queries
    so laptops and desktops get an appropriate fixed min-width while
    smaller devices fall back to fluid layout. */
+.shc-dynamic-min {
+  min-width: 320px; /* default for very small screens */
+}
+
+@media (min-width: 768px) {
+  /* tablets / small laptops */
+  .shc-dynamic-min { min-width: 900px; }
+}
+
+@media (min-width: 1024px) {
+  /* typical laptop */
+  .shc-dynamic-min { min-width: 1200px; }
+}
+
+@media (min-width: 1280px) {
+  /* desktop and larger - upper bound requested */
+  .shc-dynamic-min { min-width: 1425px; }
+}
+
+/* Layout for the SelfEvaluation header and honeycomb wrapper */
+.shc-root {
+  position: relative;
+  width: 100%;
+}
+.shc-overlay {
+  position: relative;
+  padding: 24px 0; /* top/bottom padding for page spacing */
+}
+.shc-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+.shc-left {
+  flex: 1 1 0;
+  min-width: 0; /* allow truncation */
+}
+.shc-right {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+.shc-entity-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.shc-honeycomb-wrapper {
+  margin-top: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive: on small screens stack header content */
+@media (max-width: 767px) {
+  .shc-header-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 12px;
+  }
+  .shc-right {
+    align-items: stretch;
+    text-align: left;
+  }
+  .shc-entity-buttons {
+    justify-content: center;
+  }
+  .shc-header-container h2 { text-align: left; }
+}
+
