@@ -169,21 +169,3 @@ body.shc-hide-commandbar div.commandBarWrapper[aria-label="Command bar"] {
    replaces the inline JS minWidth approach and uses media queries
    so laptops and desktops get an appropriate fixed min-width while
    smaller devices fall back to fluid layout. */
-.shc-dynamic-min {
-  min-width: 320px; /* default for very small screens */
-}
-
-@media (min-width: 768px) {
-  /* tablets / small laptops */
-  .shc-dynamic-min { min-width: 900px; }
-}
-
-@media (min-width: 1024px) {
-  /* typical laptop */
-  .shc-dynamic-min { min-width: 1200px; }
-}
-
-@media (min-width: 1280px) {
-  /* desktop and larger - upper bound requested */
-  .shc-dynamic-min { min-width: 1425px; }
-}
