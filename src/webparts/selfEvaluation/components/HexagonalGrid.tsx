@@ -714,7 +714,8 @@ export default function HexagonalGrid({ activeEntity }: HexagonalGridProps) {
                     onMouseLeave={() => handleHexagonHover(null)}
                     isClickable={isClickable}
                     rotationDeg={HEX_ROTATION_DEG}
-                    isDisabled={!isActive}
+                        isDisabled={!isActive}
+                        size={OUTER_HEX_SIZE}
                   />
                 </g>
               );
@@ -777,6 +778,7 @@ export default function HexagonalGrid({ activeEntity }: HexagonalGridProps) {
                         isClickable={isSubSkillActive}
                         rotationDeg={HEX_ROTATION_DEG}
                         isDisabled={!isSubSkillActive}
+                        size={OUTER_HEX_SIZE}
                       />
                     );
                   })}

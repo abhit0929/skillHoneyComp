@@ -9,6 +9,7 @@ interface FigmaHexagonProps {
   onMouseLeave: () => void;
   isClickable: boolean;
   rotationDeg?: number;
+  size?: number; // outer hex radius in px
   isDisabled?: boolean;
 }
 
@@ -23,6 +24,7 @@ export default function FigmaHexagon({
   onMouseLeave,
   isClickable,
   rotationDeg = -60,
+  size,
   isDisabled = false,
 }: FigmaHexagonProps) {
   // Create hexagon path (rotation configurable to match Figma per-variant)
@@ -70,8 +72,12 @@ export default function FigmaHexagon({
   };
 
   const getFontSize = () => {
-    if (type === "center") return "24px";
-    return "14px";
+    // Scale font size proportionally to outer hex size so all hex types
+    // keep consistent visual size. Use a different multiplier for center to keep emphasis.
+    const centerMultiplier = 0.32; // ~24px when outerSize=77 => 24.64
+    const regularMultiplier = 0.18; // ~14px when outerSize=77 => 13.86
+    const fs = type === "center" ? Math.round(outerSize * centerMultiplier) : Math.round(outerSize * regularMultiplier);
+    return `${Math.max(10, fs)}px`;
   };
 
   const getFontWeight = () => {
@@ -83,15 +89,15 @@ export default function FigmaHexagon({
     return "19px"; // 135.714% of 14px
   };
 
-  const outerSize = 77; // Reduced by 10px for smaller hexagons (was 87px)
-  const innerSize = 70; // Reduced proportionally for inner stroke hexagon (was 76px)
+  const outerSize = size ?? 77; // outer hex radius (default 77)
+  const innerSize = Math.round(outerSize * 0.91); // inner stroke hexagon scaled proportionally
 
   // Text clipping and layout inside the inner hexagon (stay within border)
-  const borderPadding = 6; // Reverted to original value to prevent text cutting
+  const borderPadding = Math.round(outerSize * 0.078); // proportional padding
   const textClipSize = innerSize - borderPadding; // hex radius for the clip path
   const clipWidth = textClipSize * 2;
   const clipHeight = Math.sqrt(3) * textClipSize; // bounding box height for a flat-top hexagon
-  const contentPadding = 8; // Reverted to original value to prevent text cutting
+  const contentPadding = Math.round(outerSize * 0.104); // proportional content padding
 
   // Unique clip-path id per hexagon
   const sanitize = (s: string) => s.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
@@ -146,25 +152,12 @@ export default function FigmaHexagon({
   };
 
   const computeFittingLayout = () => {
-    // For secondary hexagons, ALWAYS use 14px - no scaling whatsoever
-    if (type === "secondary") {
-      const fs = 14;
-      const lineHeight = fs * lineHeightFactor;
-      // Use standard character calculation for wrapping
-      const maxChars = Math.max(
-        6,
-        Math.floor(contentWidth / (avgCharWidthFactor * fs)),
-      );
-      const lines = wrapWords(label, maxChars);
-      return { fs, lineHeight, lines };
-    }
-
-    // For center hexagon, use the original scaling logic
-    for (let fs = baseFontSize; fs >= minFontSize; fs--) {
-      const maxChars = Math.max(
-        1,
-        Math.floor(contentWidth / (avgCharWidthFactor * fs)),
-      );
+    // Unified autosizing algorithm: start from a proportional base font size and
+    // decrease until text fits inside the clipped area. This works for all hex types.
+    const proportionalBase = Math.round(outerSize * (type === "center" ? 0.32 : 0.18));
+    const startFs = Math.max(minFontSize, proportionalBase);
+    for (let fs = startFs; fs >= minFontSize; fs--) {
+      const maxChars = Math.max(1, Math.floor(contentWidth / (avgCharWidthFactor * fs)));
       const lines = wrapWords(label, maxChars);
       const lineHeight = fs * lineHeightFactor;
       const totalHeight = lines.length * lineHeight;
@@ -172,15 +165,12 @@ export default function FigmaHexagon({
         return { fs, lineHeight, lines };
       }
     }
-    // fallback to min size for center hexagon
-    const fs = minFontSize;
-    const maxChars = Math.max(
-      1,
-      Math.floor(contentWidth / (avgCharWidthFactor * fs)),
-    );
-    const lines = wrapWords(label, maxChars);
-    const lineHeight = fs * lineHeightFactor;
-    return { fs, lineHeight, lines };
+    // Fallback to min font size
+    const fsFallback = minFontSize;
+    const maxCharsFallback = Math.max(1, Math.floor(contentWidth / (avgCharWidthFactor * fsFallback)));
+    const linesFallback = wrapWords(label, maxCharsFallback);
+    const lineHeightFallback = fsFallback * lineHeightFactor;
+    return { fs: fsFallback, lineHeight: lineHeightFallback, lines: linesFallback };
   };
 
   const { fs, lineHeight, lines } = computeFittingLayout();

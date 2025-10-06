@@ -44,6 +44,24 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
       }
     };
   }, []);
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+  const [containerMinWidth, setContainerMinWidth] = React.useState<string | undefined>(undefined);
+
+  React.useEffect(() => {
+    const updateMinWidth = () => {
+      // Desired behaviour: similar to min-width:1400px but responsive.
+      // We'll set minWidth to the smaller of viewport width and 1400px, but
+      // never less than 320px to avoid extreme shrinkage on tiny devices.
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      const target = Math.min(Math.max(320, vw), 1400);
+      setContainerMinWidth(`${target}px`);
+    };
+
+    updateMinWidth();
+    window.addEventListener('resize', updateMinWidth);
+    return () => window.removeEventListener('resize', updateMinWidth);
+  }, []);
+
   return (
     <div
       className="relative min-h-screen overflow-x-hidden overflow-y-auto"
@@ -61,9 +79,9 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
         }}
       ></div>
 
-      {/* Content - full-width background with centered inner container */}
+      {/* Content - full-bleed background with centered inner container */}
       <div
-        className="relative shc-full-width"
+        className="relative shc-full-bleed"
         style={{
           backgroundImage: `url(${SkillBg})`,
           backgroundRepeat: "no-repeat",
@@ -71,7 +89,11 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
           backgroundPosition: "center top",
         }}
       >
-        <div className="relative px-4 sm:px-6 lg:px-8 pt-6 pb-10 mx-auto w-full max-w-7xl">
+        <div
+          ref={containerRef}
+          className="relative px-4 sm:px-6 lg:px-8 pt-6 pb-10 mx-auto w-full max-w-7xl"
+          style={{ minWidth: containerMinWidth }}
+        >
           {/* Header section */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2.5 gap-4">
             <div>
