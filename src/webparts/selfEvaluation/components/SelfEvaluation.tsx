@@ -44,23 +44,7 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
       }
     };
   }, []);
-  const containerRef = React.useRef<HTMLDivElement | null>(null);
-  const [containerMinWidth, setContainerMinWidth] = React.useState<string | undefined>(undefined);
-
-  React.useEffect(() => {
-    const updateMinWidth = () => {
-      // Desired behaviour: similar to min-width:1400px but responsive.
-      // We'll set minWidth to the smaller of viewport width and 1400px, but
-      // never less than 320px to avoid extreme shrinkage on tiny devices.
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      const target = Math.min(Math.max(320, vw), 1400);
-      setContainerMinWidth(`${target}px`);
-    };
-
-    updateMinWidth();
-    window.addEventListener('resize', updateMinWidth);
-    return () => window.removeEventListener('resize', updateMinWidth);
-  }, []);
+  // Use CSS media-queries (shc-dynamic-min) instead of JS-driven minWidth
 
   return (
     <div
@@ -90,9 +74,7 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
         }}
       >
         <div
-          ref={containerRef}
-          className="relative px-4 sm:px-6 lg:px-8 pt-6 pb-10 mx-auto w-full max-w-7xl"
-          style={{ minWidth: containerMinWidth }}
+          className="relative px-4 sm:px-6 lg:px-8 pt-6 pb-10 mx-auto w-full max-w-7xl shc-dynamic-min"
         >
           {/* Header section */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2.5 gap-4">

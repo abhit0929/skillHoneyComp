@@ -151,3 +151,39 @@ body.shc-hide-commandbar div.commandBarWrapper[aria-label="Command bar"] {
   background-image: none !important;
   background: transparent !important;
 }
+
+/* Full-bleed helper: make a container stretch edge-to-edge of the viewport
+   even when placed inside SharePoint page containers. Use this on the
+   wrapper that should span the full browser width. */
+.shc-full-bleed {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  /* Shift the element so its left edge aligns with the viewport left */
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  box-sizing: border-box;
+}
+
+/* Responsive min-width helper for the centered inner container.
+   Use by adding `shc-dynamic-min` to the inner container div. This
+   replaces the inline JS minWidth approach and uses media queries
+   so laptops and desktops get an appropriate fixed min-width while
+   smaller devices fall back to fluid layout. */
+.shc-dynamic-min {
+  min-width: 320px; /* default for very small screens */
+}
+
+@media (min-width: 768px) {
+  /* tablets / small laptops */
+  .shc-dynamic-min { min-width: 900px; }
+}
+
+@media (min-width: 1024px) {
+  /* typical laptop */
+  .shc-dynamic-min { min-width: 1200px; }
+}
+
+@media (min-width: 1280px) {
+  /* desktop and larger - upper bound requested */
+  .shc-dynamic-min { min-width: 1425px; }
+}
