@@ -130,13 +130,46 @@ export default function HexagonalGrid({ activeEntity }: HexagonalGridProps) {
   } | null>(null);
   const [modalOpener, setModalOpener] = useState<HTMLElement | null>(null);
 
-  // Determine which skills are active for the current entity
-  const getSkillActiveState = (skill: any) => {
-    if (activeEntity === "all") {
-      return true; // All skills are active when "All C&P entities" is selected
-    }
-    return skill.entities.includes(activeEntity);
-  };
+    // Curated set of green honeycomb skills that should be highlighted when 'All C&P entities' is clicked
+    const ALL_HIGHLIGHT_IDS = new Set<string>([
+      // safety cluster
+      "safety-leadership",
+      "safety",
+      // commercial cluster
+      "commercial-strategy",
+      "commercial-financial-acumen",
+      // stakeholder/regulatory
+      "sustainability-innovation",
+      // technology
+      "digital-transformation",
+      // operations
+      "cost-discipline",
+      // strategic leadership cluster (include both core and specialized)
+      "strategic-leadership",
+      "strategic-leadership-skill",
+      "negotiation",
+      "cross-functional-collaboration",
+      "leading-through-change",
+      "talent-management",
+      "high-performance-teams",
+      "authentic-leadership",
+      "enterprise-leadership",
+    ]);
+
+    // Determine which skills are active for the current entity
+    // Behavior:
+    // - If no entity is selected (falsy) -> highlight everything
+    // - If activeEntity === 'all' -> highlight only the curated ALL_HIGHLIGHT_IDS set
+    // - Otherwise -> highlight based on skill.entities membership
+    const getSkillActiveState = (skill: any) => {
+      if (!activeEntity) return true; // none selected -> show all
+
+      if (activeEntity === "all") {
+        return ALL_HIGHLIGHT_IDS.has(skill.id);
+      }
+
+      return skill.entities.includes(activeEntity);
+    };
 
   // Get core and center skills directly from skillsData - truly data-driven
   const skillCategories: SkillCategory[] = useMemo(() => {
@@ -215,25 +248,43 @@ export default function HexagonalGrid({ activeEntity }: HexagonalGridProps) {
     const parentCategory = skillCategories.find((c) => c.id === categoryId);
 
     if (parentCategory) {
-      // Create a kebab-case ID from the skill name
-      const skillId = subSkillName
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, "") // Remove special characters
-        .replace(/\s+/g, "-") // Replace spaces with hyphens
-        .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
+      // Map display category id to skillsData.category value
+      const categoryMapping: Record<string, string> = {
+        safety: "safety",
+        commercial: "commercial",
+        operations: "operations",
+        strategic: "strategic-leadership",
+        technology: "technology-innovation",
+        stakeholder: "stakeholder-regulatory",
+      };
+      const mappedCategory = categoryMapping[categoryId];
 
-      // Find the related skill from skillsData to get entities
-      const relatedSkill = skills.find(
-        (skill) =>
-          skill.category === categoryId ||
-          skill.name.toLowerCase().includes(categoryId),
+      // Prefer matching the specialized skill in the correct category to avoid colliding with core labels
+      let matchedSkill = skills.find(
+        (s) =>
+          s.name === subSkillName && s.type === "specialized" && s.category === mappedCategory,
       );
 
+      // Fallbacks: case-insensitive, or any specialized with same name, or any name match
+      if (!matchedSkill) {
+        matchedSkill =
+          skills.find(
+            (s) =>
+              s.name.toLowerCase() === subSkillName.toLowerCase() && s.type === "specialized" && s.category === mappedCategory,
+          ) || skills.find((s) => s.name === subSkillName && s.type === "specialized") || skills.find((s) => s.name === subSkillName);
+      }
+
+      const finalSkillId = matchedSkill ? matchedSkill.id : subSkillName
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
       setSelectedSkill({
-        id: skillId,
+        id: finalSkillId,
         name: subSkillName,
         category: categoryId,
-        entityIds: relatedSkill?.entities || ["all"],
+        entityIds: matchedSkill?.entities || ["all"],
       });
 
       // Store the opener element for focus management

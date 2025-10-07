@@ -74,10 +74,10 @@ export function SkillModal({
     skillData?.subSkillDescription ||
     `No description available for ${skill.name}. This skill is part of the ${skill.category} domain.`;
 
-  // Get entity colors for tags (exclude "all" entity)
+  // Get entity colors for tags
   const skillEntities = skill.entityIds || [];
-  const relatedEntities = entitiesData.filter(
-    (entity) => skillEntities.includes(entity.id) && entity.id !== "all",
+  const relatedEntities = entitiesData.filter((entity) =>
+    skillEntities.includes(entity.id),
   );
 
   return (

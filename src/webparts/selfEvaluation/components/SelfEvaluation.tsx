@@ -8,10 +8,8 @@ import "../assets/global.css"; // Import global styles"
 // ...existing code..
 
 const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
-    //const [activeEntity, setActiveEntity] = React.useState<string>("all");
-// const activeEntityState = React.useState<string>("all");
-// const activeEntity = activeEntityState[0];
- const [activeEntity, setActiveEntity] = React.useState<string>("all");
+     // Start with no active entity so the page loads with all hexes highlighted
+     const [activeEntity, setActiveEntity] = React.useState<string>("");
   // Helper function to get exact border colors from Figma
   const getBorderColor = (entityId: string): string => {
     const borderColors: Record<string, string> = {
@@ -97,12 +95,12 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
                   }}
                 >
                   <span className="shc-entity-name">{entity.name}</span>
-                  {activeEntity === entity.id && entity.id !== 'all' && (
+                  {activeEntity === entity.id && (
                     <span
                       className="shc-entity-close"
                       role="button"
                       aria-label={`Clear ${entity.name}`}
-                      onClick={(e) => { e.stopPropagation(); setActiveEntity('all'); }}
+                      onClick={(e) => { e.stopPropagation(); setActiveEntity(''); }}
                       style={{ marginLeft: '6px', fontWeight: 700 }}
                     >
                       ×
