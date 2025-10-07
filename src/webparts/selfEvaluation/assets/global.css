@@ -246,3 +246,20 @@ body.shc-hide-commandbar div.commandBarWrapper[aria-label="Command bar"] {
   .shc-header-container h2 { text-align: left; }
 }
 
+#showOverlayText{
+  display: none !important;
+}
+
+
+[data-automationid="HorizontalNav-edit"] {
+  display: none !important;
+}
+
+
+a[href*="AdminRecycleBin.aspx"] span.ms-HorizontalNavItem-linkText {
+  display: none !important;
+}
+
+#CommentsWrapper{
+  display: none !important;
+}

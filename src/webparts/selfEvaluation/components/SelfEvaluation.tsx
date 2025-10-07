@@ -49,7 +49,7 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
 
   return (
     <div
-      className="shc-root"
+      className="shc-root -mt-[3.125em]"
       style={{
         backgroundImage: `url(${SkillBg})`,
         backgroundSize: "cover",
@@ -81,7 +81,7 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
                 <button
                   key={entity.id}
                   onClick={() => setActiveEntity(entity.id)}
-                  className={`py-1 px-3 rounded-full border text-[12px] font-normal transition-all duration-200 ${
+                  className={`py-1 px-3 mr-2 rounded-full border text-[12px] font-normal transition-all duration-200 ${
                     activeEntity === entity.id
                       ? "border-gray-400 shadow-md"
                       : "border-transparent hover:border-gray-300"
