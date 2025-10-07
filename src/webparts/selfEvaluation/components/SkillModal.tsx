@@ -63,8 +63,10 @@ export function SkillModal({
 
   if (!skill) return null;
 
-  // Find the skill by name to get its embedded description
-  const skillData = skillsData.find((s) => s.name === skill.name);
+  // Find the skill by id first to get its embedded description. Fallback to name match for legacy entries.
+  const skillData =
+    skillsData.find((s) => s.id === skill.id) ||
+    skillsData.find((s) => s.name === skill.name);
 
   // Get description from skill data with fallback
   const description =

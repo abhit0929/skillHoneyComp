@@ -128,6 +128,17 @@ export const skills: Skill[] = [
       "Builds trust and alignment among diverse groups to enable successful delivery of projects, initiatives, and business outcomes.",
   },
   {
+    id: "stakeholder-and-regulatory-engagement",
+    name: "Stakeholder and regulatory engagement",
+    type: "specialized",
+    category: "stakeholder-regulatory",
+    entities: ["all", "castrol", "pulse", "mc"],
+    position: { x: -406, y: -306 },
+    ring: 2,
+    subSkillDescription:
+      "Establish and manage mutually beneficial and responsive relationships with and between partners and other stakeholders, managing issues by considering needs, commitments, and expectations of all parties.",
+  },
+  {
     id: "government-relations",
     name: "Government relations",
     type: "specialized",
