@@ -91,9 +91,23 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
                     background: `linear-gradient(0deg, ${entity.color} 0%, ${entity.color} 100%)`,
                     color: entity.textColor,
                     whiteSpace: "nowrap",
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px'
                   }}
                 >
-                  {entity.name}
+                  <span className="shc-entity-name">{entity.name}</span>
+                  {activeEntity === entity.id && entity.id !== 'all' && (
+                    <span
+                      className="shc-entity-close"
+                      role="button"
+                      aria-label={`Clear ${entity.name}`}
+                      onClick={(e) => { e.stopPropagation(); setActiveEntity('all'); }}
+                      style={{ marginLeft: '6px', fontWeight: 700 }}
+                    >
+                      ×
+                    </span>
+                  )}
                 </button>
               ))}
             </div>

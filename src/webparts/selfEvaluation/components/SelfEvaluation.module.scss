@@ -207,10 +207,36 @@ html, body {
   justify-content: flex-end;
   gap: 0.5rem;
 }
+  .shc-clear-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 30px;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
 
 .shc-entity-buttons button {
   border-radius: 9999px;
   flex-shrink: 0;
+  cursor: pointer;
+}
+
+.shc-entity-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.85);
+  color: #000;
+  font-size: 12px;
+  line-height: 1;
   cursor: pointer;
 }
 
