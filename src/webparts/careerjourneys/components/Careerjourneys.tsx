@@ -70,7 +70,7 @@ export default class Careerjourneys extends React.Component<ICareerjourneysProps
         <div className="flex flex-col gap-2.5">
           <div className="flex items-center justify-between">
             <h1 className="text-[28px] font-light text-foreground">
-              Success stories
+              Illustrative career journeys
             </h1>
           </div>
           <p className="text-sm leading-5 text-muted-foreground">

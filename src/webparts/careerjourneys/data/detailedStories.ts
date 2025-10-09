@@ -9,7 +9,7 @@ export const paulAStory: DetailedSuccessStory = {
   id: "paul-a",
   name: "Paul A.",
   careerJourney: "Joined bp in 2006",
-  testimonial: "His journey shows how moving across roles in different markets helped him build a broad commercial skillset – from pricing to supply chain to strategy",
+  testimonial: "I didn’t plan this path, but every pivot has led me closer to what I love doing: developing teams and running complex businesses!",
   quote: "I never thought moving sideways into supply chain would prepare me so well for senior leadership.",
   imageUrl: paulAImage,
   primaryEntityId: "mc", // Primary entity from skillsData
@@ -186,25 +186,13 @@ export const paulAStory: DetailedSuccessStory = {
   ]
 };
 
-// Ajay Joshi's success story data
-export const ajayjoshiStory: DetailedSuccessStory = {
-  id: "ajay joshi",
-  name: "Ajay Joshi",
-  careerJourney: "2017 - 2024",
-  testimonial: "He learned and steadily advanced from entry level to senior leadership, building diverse skills and experiences across multiple departments along the way.",
-  quote: "", 
-  imageUrl: ajayJImage,
-  primaryEntityId: "tech", // Primary entity from skillsData
-  skillsBackpack: [], 
-  careerPath: [] 
-};
 
 // Rob Grace's success story data 
 export const robGraceStory: DetailedSuccessStory = {
   id: "rob-grace",
   name: "Rob Grace",
-  careerJourney: "2014 - 2020",
-  testimonial: "He grew and steadily evolved from entry level to senior leadership, thoughtfully developing a wide range of skills and valuable experiences across diverse departments.",
+  careerJourney: "Joined BP in 2007",
+  testimonial: "This wasn't the career I expected when I joined as a Chemist, but I have loved the variety. I love applying my problem-solving skills to all parts of the value chain from refinery gate to distributors to vehicles driving around the world!",
   quote: "", 
   imageUrl: robGraceImage,
   primaryEntityId: "castrol", // Primary entity from skillsData
@@ -212,11 +200,27 @@ export const robGraceStory: DetailedSuccessStory = {
   careerPath: []
 };
 
+// Ajay Joshi's success story data
+export const ajayjoshiStory: DetailedSuccessStory = {
+  id: "ajay joshi",
+  name: "Ajay Joshi",
+  careerJourney: "Joined BP in 2007",
+  testimonial: "My career has been a mix of functional and business leadership roles, but the common threads are relentless learning, driving P&L growth, and passion for developing people.",
+  quote: "", 
+  imageUrl: ajayJImage,
+  primaryEntityId: "tech", // Primary entity from skillsData
+  skillsBackpack: [], 
+  careerPath: [] 
+};
+
+
 // Detailed stories data - all three stories with same structure
 export const detailedSuccessStories: DetailedSuccessStory[] = [
-  ajayjoshiStory,
+  robGraceStory,
   paulAStory,
-  robGraceStory
+  ajayjoshiStory
+  
+  
 ];
 
 // Success stories list for the main page - extracted from detailed stories to avoid duplication

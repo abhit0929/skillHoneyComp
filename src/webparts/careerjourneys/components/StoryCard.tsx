@@ -80,7 +80,7 @@ export default function StoryCard({ story }: StoryCardProps) {
           <div className="flex flex-col items-center gap-2.5">
             <h3 className="text-2xl font-light text-primary">{story.name}</h3>
             <p className="text-base leading-[21px] text-muted-foreground">
-              Career journey: {story.careerJourney}
+               {story.careerJourney}
             </p>
           </div>
 
