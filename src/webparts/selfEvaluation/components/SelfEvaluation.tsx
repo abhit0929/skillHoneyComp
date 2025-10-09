@@ -63,7 +63,7 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
             <h2 className="text-black text-[28px] font-light leading-normal">
               Skills honeycomb
             </h2>
-            <p className="text-[#333] text-sm font-normal leading-5">
+            <p className="text-[#333] font-normal leading-5">
               Build your personalized career development plan
             </p>
           </div>

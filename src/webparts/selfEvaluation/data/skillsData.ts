@@ -95,7 +95,7 @@ export const skills: Skill[] = [
     id: "stakeholder-regulatory",
     name: "Stakeholder and regulatory engagement",
     type: "core",
-    entities: ["all", "castrol", "pulse", "mc"],
+    entities: ["all", "castrol", "pulse", "mc", "fsm"],
     position: { x: -118, y: -68 },
     ring: 1,
   },
@@ -121,7 +121,7 @@ export const skills: Skill[] = [
     name: "Stakeholder and partnership management",
     type: "specialized",
     category: "stakeholder-regulatory",
-    entities: ["all", "castrol", "pulse", "mc"],
+    entities: ["castrol", "pulse", "mc"],
     position: { x: -406, y: -170 },
     ring: 2,
     subSkillDescription:
@@ -132,7 +132,7 @@ export const skills: Skill[] = [
     name: "Stakeholder and regulatory engagement",
     type: "specialized",
     category: "stakeholder-regulatory",
-    entities: ["all", "castrol", "pulse", "mc"],
+    entities: ["fsm", "castrol", "pulse", "mc"],
     position: { x: -406, y: -306 },
     ring: 2,
     subSkillDescription:
@@ -143,7 +143,7 @@ export const skills: Skill[] = [
     name: "Government relations",
     type: "specialized",
     category: "stakeholder-regulatory",
-    entities: ["all", "mc"],
+    entities: ["mc"],
     position: { x: -288, y: -238 },
     ring: 2,
     subSkillDescription:
@@ -167,7 +167,7 @@ export const skills: Skill[] = [
     name: "Digital fluency & data analysis",
     type: "specialized",
     category: "technology-innovation",
-    entities: ["all", "tech", "castrol", "pulse", "mc"],
+    entities: ["tech", "castrol", "pulse", "mc"],
     position: { x: -446, y: 112 },
     ring: 2,
     subSkillDescription:
@@ -202,7 +202,7 @@ export const skills: Skill[] = [
     name: "Commercial P&L",
     type: "specialized",
     category: "commercial",
-    entities: ["all", "aviation", "castrol", "pulse", "mc"],
+    entities: ["aviation", "castrol", "pulse", "mc"],
     position: { x: 168, y: -271 },
     ring: 2,
     subSkillDescription:
@@ -213,7 +213,7 @@ export const skills: Skill[] = [
     name: "Procurement",
     type: "specialized",
     category: "commercial",
-    entities: ["all", "procurement", "castrol", "mc"],
+    entities: ["procurement", "castrol", "mc"],
     position: { x: 404, y: -271 },
     ring: 2,
     subSkillDescription:
@@ -235,7 +235,7 @@ export const skills: Skill[] = [
     name: "Customer - centric and market-driven approach",
     type: "specialized",
     category: "commercial",
-    entities: ["all", "castrol", "pulse", "mc"],
+    entities: ["castrol", "pulse", "mc"],
     position: { x: 404, y: -135 },
     ring: 2,
     subSkillDescription:
@@ -246,7 +246,7 @@ export const skills: Skill[] = [
     name: "Commercial BD",
     type: "specialized",
     category: "commercial",
-    entities: ["all", "aviation", "biofuels", "castrol", "mc"],
+    entities: ["aviation", "biofuels", "castrol", "mc"],
     position: { x: 522, y: -203 },
     ring: 2,
     subSkillDescription:
@@ -257,7 +257,7 @@ export const skills: Skill[] = [
     name: "Partnership and alliance development",
     type: "specialized",
     category: "commercial",
-    entities: ["all", "fsm", "castrol", "pulse", "mc"],
+    entities: ["fsm", "castrol", "pulse", "mc"],
     position: { x: 404, y: -407 },
     ring: 2,
     subSkillDescription:
@@ -268,7 +268,7 @@ export const skills: Skill[] = [
     name: "Financial modelling",
     type: "specialized",
     category: "commercial",
-    entities: ["all", "finance"],
+    entities: ["finance"],
     position: { x: 522, y: -339 },
     ring: 2,
     subSkillDescription:
@@ -279,7 +279,7 @@ export const skills: Skill[] = [
     name: "Investment strategy",
     type: "specialized",
     category: "commercial",
-    entities: ["all", "aviation", "biofuels", "fsm", "pulse"],
+    entities: ["aviation", "biofuels", "fsm", "pulse"],
     position: { x: 522, y: -67 },
     ring: 2,
     subSkillDescription:
@@ -292,7 +292,7 @@ export const skills: Skill[] = [
     name: "Operational and supply chain expertise",
     type: "specialized",
     category: "operations",
-    entities: ["all", "castrol", "biofuels", "pulse"],
+    entities: ["castrol", "biofuels", "pulse"],
     position: { x: 286, y: 0 },
     ring: 2,
     subSkillDescription:
@@ -303,7 +303,7 @@ export const skills: Skill[] = [
     name: "Supply chain management",
     type: "specialized",
     category: "operations",
-    entities: ["all", "biofuels", "castrol", "mc"],
+    entities: ["biofuels", "castrol", "mc"],
     position: { x: 404, y: 68 },
     ring: 2,
     subSkillDescription:
@@ -325,7 +325,7 @@ export const skills: Skill[] = [
     name: "Retail operations",
     type: "specialized",
     category: "operations",
-    entities: ["all", "mc"],
+    entities: ["mc"],
     position: { x: 404, y: 204 },
     ring: 2,
     subSkillDescription:
@@ -336,7 +336,7 @@ export const skills: Skill[] = [
     name: "Global team leadership",
     type: "specialized",
     category: "operations",
-    entities: ["all", "pulse", "fsm", "castrol"],
+    entities: ["pulse", "fsm", "castrol"],
     position: { x: 522, y: 272 },
     ring: 2,
     subSkillDescription:

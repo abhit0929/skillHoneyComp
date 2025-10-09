@@ -492,29 +492,8 @@ export default function HexagonalGrid({ activeEntity }: HexagonalGridProps) {
     const subSkillData = skills.find((skill) => skill.name === subSkillName);
     if (!subSkillData) return false;
 
-    // Check if the sub-skill itself is active for the current entity
-    const isSubSkillActive = getSkillActiveState(subSkillData);
-
-    // Also check if the parent category is active for the current entity
-    const categoryMapping: Record<string, string> = {
-      safety: "safety",
-      commercial: "commercial",
-      operations: "operations",
-      strategic: "strategic-leadership",
-      technology: "technology-innovation",
-      stakeholder: "stakeholder-regulatory",
-    };
-
-    const parentCategoryId = categoryMapping[categoryId];
-    const parentCategoryData = skills.find(
-      (skill) => skill.id === parentCategoryId,
-    );
-    const isParentCategoryActive = parentCategoryData
-      ? getSkillActiveState(parentCategoryData)
-      : false;
-
-    // Line should only be active if BOTH parent category AND sub-skill are active
-    return isSubSkillActive && isParentCategoryActive;
+    // Sub-skill is active if the sub-skill itself matches the current entity filter
+    return getSkillActiveState(subSkillData);
   };
 
   // Helper function to create standardized 58px line with endpoint circle

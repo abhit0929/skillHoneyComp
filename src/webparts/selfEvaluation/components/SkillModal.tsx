@@ -104,7 +104,7 @@ export function SkillModal({
           <h2 className="text-white font-bold mb-2 text-base">{skill.name}</h2>
 
           {/* Description */}
-          <p className="text-sm text-[#E0E0E0] mb-4 leading-relaxed">
+          <p className="text-[#E0E0E0] mb-4 leading-relaxed">
             {description}
           </p>
           {/* Entity Tags */}
@@ -113,7 +113,7 @@ export function SkillModal({
               {relatedEntities.map((entity) => (
                 <span
                   key={entity.id}
-                  className="inline-block px-3 py-1 text-sm rounded-full font-normal text-[12px]"
+                  className="inline-block px-3 py-1 rounded-full font-normal text-[12px]"
                   style={{
                     backgroundColor: entity.color,
                     color: entity.textColor,
