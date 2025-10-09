@@ -9,10 +9,19 @@
           "manifest": "./src/webparts/selfEvaluation/SelfEvaluationWebPart.manifest.json"
         }
       ]
+    },
+    "careerjourneys-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/careerjourneys/CareerjourneysWebPart.js",
+          "manifest": "./src/webparts/careerjourneys/CareerjourneysWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "SelfEvaluationWebPartStrings": "lib/webparts/selfEvaluation/loc/{locale}.js"
+    "SelfEvaluationWebPartStrings": "lib/webparts/selfEvaluation/loc/{locale}.js",
+    "CareerjourneysWebPartStrings": "lib/webparts/careerjourneys/loc/{locale}.js"
   }
 }
