@@ -26,6 +26,9 @@ export const entities: SkillEntity[] = [
   { id: "castrol", name: "Castrol", color: "#3C7D22", textColor: "#FFFFFF" },
   { id: "pulse", name: "Pulse", color: "#99FF66", textColor: "#000000" },
   { id: "mc", name: "M&C", color: "#CCFFCC", textColor: "#000000" },
+  { id: "marketing", name: "Marketing", color: "#E97132", textColor: "#FFFFFF" },
+  { id: "outsidecp", name: "Outside C&P", color: "#FFF599", textColor: "#000000" },
+  { id: "outsidebp", name: "Outside bp", color: "#C2C2C2", textColor: "#000000" },
 ];
 
 // Exact positioning based on Figma design

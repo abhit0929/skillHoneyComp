@@ -59,6 +59,9 @@ export const departmentMap = {
   "Procurement": "procurement",
   "Biofuels": "biofuels",
   "All C&P entities": "all",
+  "Marketing": "marketing",
+  "Outside C&P": "outsidecp",
+  "Outside bp": "outsidebp",
   "NA": ""
 } as const;
 

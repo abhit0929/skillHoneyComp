@@ -5,7 +5,21 @@
 // Basic types
 export type ProficiencyLevel = "Basic" | "Intermediate" | "Advanced" | "Excellent";
 export type MovementType = "Lateral" | "Vertical";
-export type Department = "Castrol" | "FS&M" | "Aviation" | "M&C" | "Pulse" | "Tech" | "Finance" | "Procurement" | "Biofuels" | "NA";
+export type Department =
+  | "Castrol"
+  | "FS&M"
+  | "Aviation"
+  | "M&C"
+  | "Pulse"
+  | "Tech"
+  | "Finance"
+  | "Procurement"
+  | "Biofuels"
+  | "All C&P entities"
+  | "Marketing"
+  | "Outside C&P"
+  | "Outside bp"
+  | "NA";
 
 // Simple skill reference (just ID and proficiency)
 export interface SkillReference {
