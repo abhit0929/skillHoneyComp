@@ -52,7 +52,8 @@ export default function SuccessStoryDetailView({
           <div className="absolute inset-0 bg-gradient-to-tr from-white/92 via-white/55 to-transparent" />
         </div>
 
-        <div className="relative z-10 flex flex-col gap-6 px-6 pb-10 pt-6 lg:flex-row">
+        {/* <div className="relative z-10 flex flex-col gap-6 px-6 pb-10 pt-6 lg:flex-row"> */}
+        <div className="relative z-10 flex flex-col gap-6 lg:flex-row">
           <aside className="flex w-full max-w-[454px] flex-shrink-0 flex-col gap-5">
             <EmployeeProfileCard
               name={story.name}
@@ -84,7 +85,7 @@ export default function SuccessStoryDetailView({
           </div>
         </div>
 
-        <div className="relative z-10 flex flex-wrap items-center justify-end gap-2 px-6 pb-6">
+        <div className="absolute mt-[4%] ml-[13%] z-10 flex flex-wrap items-center justify-end gap-2 px-6 pb-6">
           <span className="flex items-center gap-2 rounded-full border border-[#D1D5DB] bg-white/95 px-3 py-1 text-xs text-foreground shadow-sm">
             <svg
               width="14"

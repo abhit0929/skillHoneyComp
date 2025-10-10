@@ -134,8 +134,8 @@ export default function CareerJourneyVisualization({
               let y = node.position.y;
 
               if (node.type === "map-start" || node.type === "map-end") {
-                x += 18;
-                y += 20;
+                x += 36;
+                y += 40;
               } else if (node.type === "hex-gray") {
                 x += (node.hexOffset?.x || 0) + 10; // center of 20px width
                 y += (node.hexOffset?.y || 0) + 10; // center of 20px height
@@ -165,8 +165,8 @@ export default function CareerJourneyVisualization({
           (() => {
             const startNode = careerNodes[0];
             if (startNode.type === "map-start") {
-              const x = startNode.position.x + 18;
-              const y = startNode.position.y + 20;
+              const x = startNode.position.x + 36;
+              const y = startNode.position.y + 40;
               return (
                 <circle
                   cx={x}

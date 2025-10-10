@@ -112,7 +112,8 @@ export const skills: Skill[] = [
     type: "specialized",
     category: "safety",
     entities: ["all"],
-    position: { x: 0, y: -355 },
+    // Moved upward so the top milestone reaches the mountain peak
+    position: { x: 0, y: -520 },
     ring: 2,
     subSkillDescription:
       "Understanding safety culture models, safety leadership principles and the application of these to develop a strong bp safety culture.",

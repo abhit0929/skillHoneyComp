@@ -417,7 +417,8 @@ export const robGraceStory: DetailedSuccessStory = {
       movementType: "Lateral",
       learningMilestones:
         "Assumed end-to-end P&L ownership and represented brands at the executive level.",
-      position: { x: 315, y: 25 },
+      // moved to the mountain peak
+      position: { x: 327, y: -40 },
       hexOffset: { x: 0, y: 5 },
       badgeOffset: { x: -245, y: 0 },
     },
