@@ -5,6 +5,7 @@ import SkillsBackpack from "./SkillsBackpack";
 import CareerJourneyVisualization from "./CareerJourneyVisualization";
 import type { DetailedSuccessStory } from "../types";
 import { entities } from "../../selfEvaluation/data/skillsData";
+import { departmentMap } from "../shared/utils/skillsDataAccess";
 
 const SuccessStoryBg =
   (require("../assets/images/success-story-bg.png").default ??
@@ -26,8 +27,67 @@ export default function SuccessStoryDetailView({
   skillFallbackMessage = defaultSkillFallback,
   className,
 }: SuccessStoryDetailViewProps) {
+  const [activeEntityId, setActiveEntityId] = React.useState<string | null>(
+    null,
+  );
+  const entityBarRef = React.useRef<HTMLDivElement>(null);
+
   const hasSkills =
     Array.isArray(story.skillsBackpack) && story.skillsBackpack.length > 0;
+
+  const entityStepsMap = React.useMemo(() => {
+    const map = new Map<string, typeof story.careerPath>();
+
+    story.careerPath.forEach((step) => {
+      const mappedId =
+        departmentMap[step.department as keyof typeof departmentMap];
+      if (!mappedId) {
+        return;
+      }
+      const entityId = mappedId;
+
+      if (!map.has(entityId)) {
+        map.set(entityId, []);
+      }
+
+      map.get(entityId)!.push(step);
+    });
+
+    return map;
+  }, [story.careerPath]);
+
+  React.useEffect(() => {
+    setActiveEntityId(null);
+  }, [story.id]);
+
+  React.useEffect(() => {
+    if (!activeEntityId) {
+      return;
+    }
+
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        entityBarRef.current &&
+        !entityBarRef.current.contains(event.target as Node)
+      ) {
+        setActiveEntityId(null);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveEntityId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [activeEntityId]);
 
   return (
     <div
@@ -60,7 +120,6 @@ export default function SuccessStoryDetailView({
               careerJourney={story.careerJourney}
               quote={story.testimonial}
               imageUrl={story.imageUrl || ""}
-              employeeId={story.id}
             />
 
             {hasSkills ? (
@@ -85,7 +144,10 @@ export default function SuccessStoryDetailView({
           </div>
         </div>
 
-        <div className="absolute mt-[4%] ml-[13%] z-10 flex flex-wrap items-center justify-end gap-2 px-6 pb-6">
+        <div
+          ref={entityBarRef}
+          className="absolute mt-[4%] ml-[13%] z-10 flex flex-wrap items-center justify-end gap-2 px-6 pb-6"
+        >
           <span className="flex items-center gap-2 rounded-full border border-[#D1D5DB] bg-white/95 px-3 py-1 text-xs text-foreground shadow-sm">
             <svg
               width="14"
@@ -119,35 +181,126 @@ export default function SuccessStoryDetailView({
 
           {entities.map((entity) => {
             const isPrimary = entity.id === story.primaryEntityId;
+            const entitySteps = entityStepsMap.get(entity.id) ?? [];
+            const displayedSteps = entitySteps.slice(0, 3);
+            const extraSteps = entitySteps.length - displayedSteps.length;
+            const isActive = activeEntityId === entity.id;
+
             return (
-              <span
-                key={entity.id}
-                className={`flex items-center gap-2 rounded-[4px] border px-2 py-[3px] text-xs font-medium shadow-sm`}
-                style={{
-                  borderColor: entity.color,
-                  backgroundColor: entity.color,
-                  color: entity.textColor,
-                }}
-              >
-                {entity.name}
-                {isPrimary && (
-                  <span
-                    className="rounded-sm px-1 text-[10px] font-semibold uppercase tracking-wide"
+              <div key={entity.id} className="relative">
+                <button
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() =>
+                    setActiveEntityId((prev) =>
+                      prev === entity.id ? null : entity.id,
+                    )
+                  }
+                  className={`flex items-center gap-2 rounded-[4px] border px-3 py-[6px] text-xs font-medium shadow-sm transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
+                  style={{
+                    borderColor: entity.color,
+                    backgroundColor: entity.color,
+                    color: entity.textColor,
+                    boxShadow: isActive
+                      ? "0 6px 18px rgba(0,0,0,0.18)"
+                      : "0 4px 10px rgba(0,0,0,0.1)",
+                    transform: isActive ? "translateY(-1px)" : "translateY(0)",
+                  }}
+                >
+                  {entity.name}
+                  {isPrimary && (
+                    <span
+                      className="rounded-sm px-1 text-[10px] font-semibold uppercase tracking-wide"
+                      style={{
+                        backgroundColor:
+                          entity.textColor === "#FFFFFF"
+                            ? "rgba(0,0,0,0.35)"
+                            : "rgba(255,255,255,0.5)",
+                        color:
+                          entity.textColor === "#FFFFFF"
+                            ? "#FFFFFF"
+                            : entity.textColor,
+                      }}
+                    >
+                      Primary
+                    </span>
+                  )}
+                </button>
+
+                {isActive && (
+                  <div
+                    className="shc-entity-popover"
                     style={{
-                      backgroundColor:
-                        entity.textColor === "#FFFFFF"
-                          ? "rgba(0,0,0,0.35)"
-                          : "rgba(255,255,255,0.5)",
-                      color:
-                        entity.textColor === "#FFFFFF"
-                          ? "#FFFFFF"
-                          : entity.textColor,
+                      borderColor: "rgba(17, 24, 39, 0.08)",
+                      borderTopColor: entity.color,
+                      ["--shc-popover-arrow-color" as any]:
+                        "rgba(255,255,255,0.98)",
                     }}
                   >
-                    Primary
-                  </span>
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <p
+                          className="text-sm font-semibold leading-5"
+                          style={{ color: entity.color }}
+                        >
+                          {entity.name}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {entitySteps.length > 0
+                            ? `Experiences tagged to ${entity.name} in this journey:`
+                            : `No roles from ${story.name}'s journey are tagged to this entity yet.`}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setActiveEntityId(null)}
+                        className="text-xs font-semibold uppercase tracking-wide text-muted-foreground transition-colors hover:text-foreground"
+                        aria-label={`Close details for ${entity.name}`}
+                      >
+                        Close
+                      </button>
+                    </div>
+
+                    {displayedSteps.length > 0 && (
+                      <ul className="mt-3 flex flex-col gap-3">
+                        {displayedSteps.map((step, index) => {
+                          const mobilityText =
+                            step.countryMobility === "Yes"
+                              ? "Global mobility"
+                              : "Local move";
+                          const movementLabel =
+                            step.movementType === "Vertical"
+                              ? "Vertical move"
+                              : "Lateral move";
+
+                          return (
+                            <li key={`${entity.id}-${index}`}>
+                              <p className="text-sm font-medium text-foreground">
+                                {step.role}
+                              </p>
+                              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                                {movementLabel} · {mobilityText}
+                              </p>
+                              {step.learningMilestones && (
+                                <p className="mt-1 text-xs leading-4 text-muted-foreground">
+                                  {step.learningMilestones}
+                                </p>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+
+                    {extraSteps > 0 && (
+                      <p className="mt-3 text-xs font-medium text-muted-foreground">
+                        +{extraSteps} additional role
+                        {extraSteps > 1 ? "s" : ""} linked to {entity.name}.
+                      </p>
+                    )}
+                  </div>
                 )}
-              </span>
+              </div>
             );
           })}
         </div>

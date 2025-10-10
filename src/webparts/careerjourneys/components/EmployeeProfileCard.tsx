@@ -1,9 +1,10 @@
+import HexAvatar from "./HexAvatar";
+
 interface EmployeeProfileCardProps {
   name: string;
   careerJourney: string;
   quote: string;
   imageUrl: string;
-  employeeId: string;
 }
 
 export default function EmployeeProfileCard({
@@ -11,7 +12,6 @@ export default function EmployeeProfileCard({
   careerJourney,
   quote,
   imageUrl,
-  employeeId,
 }: EmployeeProfileCardProps) {
   return (
     <div className="flex w-full max-w-[427px] flex-col items-start gap-[26px]">
@@ -19,35 +19,16 @@ export default function EmployeeProfileCard({
       <div className="flex w-full items-center gap-[-48px]">
         <div className="flex w-full items-center gap-2.5 rounded-t-md border border-[rgba(0,127,0,0.1)] bg-[#FAFCF2] p-2.5">
           {/* Hexagonal Profile Image */}
-          <div className="relative h-[90px] w-[80px] flex-shrink-0">
-            <svg
-              width="82"
-              height="91"
-              viewBox="0 0 82 91"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <clipPath id={`hexClipProfile-${employeeId}`}>
-                  <path d="M39.3262 2.52734L78.1524 24.5061L78.1524 68.4641L39.3262 90.4433L0.5 68.4641L0.5 24.5061L39.3262 2.52734Z" />
-                </clipPath>
-              </defs>
-              <image
-                href={imageUrl}
-                x="0.5"
-                y="2.5"
-                width="77.65"
-                height="87.92"
-                clipPath={`url(#hexClipProfile-${employeeId})`}
-                preserveAspectRatio="xMidYMid slice"
-              />
-              <path
-                opacity="0.4"
-                d="M73.0068 27.4248L73.0068 65.541L39.3262 84.6074L5.64648 65.541L5.64648 27.4248L39.3262 8.35937L73.0068 27.4248Z"
-                stroke="white"
-              />
-            </svg>
-          </div>
+          <HexAvatar
+            imageUrl={imageUrl}
+            alt={`${name} portrait`}
+            size={96}
+            borderColor="rgba(0, 127, 0, 0.16)"
+            innerBorderColor="rgba(255, 255, 255, 0.92)"
+            borderWidth={4}
+            innerBorderWidth={3}
+            className="flex-shrink-0"
+          />
 
           {/* Name and Details */}
           <div className="flex flex-1 flex-col items-start gap-2.5">
