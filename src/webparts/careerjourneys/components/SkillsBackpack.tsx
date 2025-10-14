@@ -82,7 +82,7 @@ export default function SkillsBackpack({ skills }: SkillsBackpackProps) {
       <div className="flex flex-col items-start gap-2.5 self-stretch">
         <div
           className="flex flex-col items-start gap-[17px] self-stretch rounded-b-md bg-white/90 p-[15px]"
-          style={{ maxHeight: 320, overflowY: 'auto', paddingRight: 8 }}
+          style={{ maxHeight: 386, overflowY: 'auto', paddingRight: 8 }}
         >
           {/* Header */}
           <div className="flex flex-col items-start gap-1.5 self-stretch">

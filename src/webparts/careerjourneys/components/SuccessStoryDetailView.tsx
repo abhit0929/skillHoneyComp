@@ -10,6 +10,10 @@ import { departmentMap } from "../shared/utils/skillsDataAccess";
 const SuccessStoryBg =
   (require("../assets/images/success-story-bg.png").default ??
     require("../assets/images/success-story-bg.png")) as string;
+  
+const SuccessStoryBg2 =
+  (require("../assets/images/success-story-bg-2.png").default ??
+    require("../assets/images/success-story-bg-2.png")) as string;
 
 interface SuccessStoryDetailViewProps {
   story: DetailedSuccessStory;
@@ -105,7 +109,7 @@ export default function SuccessStoryDetailView({
       <div>
         <div className="pointer-events-none absolute inset-0">
           <img
-            src={SuccessStoryBg}
+            src={story.id === "paulA " ? SuccessStoryBg : SuccessStoryBg2}
             alt=""
             className="h-full w-full object-cover"
           />
@@ -130,11 +134,11 @@ export default function SuccessStoryDetailView({
               </div>
             )}
 
-            {story.quote && (
+            {/* {story.quote && (
               <blockquote className="rounded-md border border-primary/20 bg-white/90 p-4 text-sm italic text-foreground">
                 {story.quote}
               </blockquote>
-            )}
+            )} */}
           </aside>
 
           <div className="flex flex-1 items-stretch justify-center lg:pl-4">

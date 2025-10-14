@@ -43,16 +43,50 @@ export default function StoryCard({ story, onSelect }: StoryCardProps) {
         }}
       >
         {/* Hexagonal Avatar Container */}
-        <HexAvatar
-          imageUrl={story.imageUrl || ""}
-          alt={story.name}
-          size={186}
-          borderColor="rgba(0, 127, 0, 0.18)"
-          innerBorderColor="rgba(255, 255, 255, 0.94)"
-          borderWidth={5}
-          innerBorderWidth={4}
-          className="mt-3"
-        />
+        <div className="relative h-[168px] w-[194px] mt-3" aria-hidden="true">
+            <svg
+              className="absolute inset-0"
+              width="194"
+              height="168"
+              viewBox="0 0 173.205 200"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Pointy-top hexagon clip (flat left/right orientation) */}
+              <defs>
+                <clipPath id={`hexClip-${story.id}`}>
+                  <polygon points="86.6025,0 173.205,50 173.205,150 86.6025,200 0,150 0,50" />
+                </clipPath>
+              </defs>
+              <image
+                href={story.imageUrl}
+                x="0"
+                y="0"
+                width="173.205"
+                height="200"
+                clipPath={`url(#hexClip-${story.id})`}
+                preserveAspectRatio="xMidYMid slice"
+              />
+              {/* Outer stroke */}
+              <polygon
+                points="86.6025,0 173.205,50 173.205,150 86.6025,200 0,150 0,50"
+                fill="none"
+                stroke="white"
+                strokeWidth="1"
+                opacity="0.9"
+              />
+              {/* Inner stroke */}
+              <g transform="translate(86.6025,100) scale(0.88) translate(-86.6025,-100)">
+                <polygon
+                  points="86.6025,0 173.205,50 173.205,150 86.6025,200 0,150 0,50"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="1"
+                  opacity="0.9"
+                />
+              </g>
+            </svg>
+          </div>
 
         {/* Name and Journey */}
         <div className="flex flex-col items-center gap-2.5">

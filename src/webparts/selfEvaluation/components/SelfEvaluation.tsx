@@ -75,7 +75,12 @@ const SelfEvaluation: React.FC<ISelfEvaluationProps> = () => {
               having the greatest opportunity in this specific entity. Click below to see.
             </p>
             <div className="shc-entity-buttons" style={{ textAlign: "right" }}>
-              {entities.map((entity) => (
+              {entities
+                .filter((entity) =>
+                  // Hide entities not to be shown in Skill Honey
+                  !["marketing", "outsidecp", "outsidebp"].includes(entity.id),
+                )
+                .map((entity) => (
                 <button
                   key={entity.id}
                   onClick={() => setActiveEntity(entity.id)}
