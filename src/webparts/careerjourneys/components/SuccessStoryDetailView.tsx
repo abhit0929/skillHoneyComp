@@ -99,8 +99,38 @@ export default function SuccessStoryDetailView({
         className ? className : ""
       }`}
     >
-      <div className="flex flex-wrap items-center justify-between gap-4 px-0">
-        <div className="flex items-center gap-2 text-primary">{backSlot}</div>
+      <div className="flex flex-wrap items-center justify-between gap-4 px-0" >
+        <div className="flex items-center gap-2 text-primary" style={{ zIndex: 10 }}>
+          {backSlot ?? (
+            <button
+              type="button"
+              onClick={() => {
+                try {
+                  window.history.back();
+                } catch {}
+              }}
+              className="flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M14.625 9H3.375M8.4375 4.125L3.375 9L8.4375 13.875"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Back
+            </button>
+          )}
+        </div>
         <p className="text-xs text-muted-foreground">
           Click each job title to know about key experience.
         </p>
@@ -150,7 +180,7 @@ export default function SuccessStoryDetailView({
 
         <div
           ref={entityBarRef}
-          className="absolute mt-[4%] ml-[13%] z-10 flex flex-wrap items-center justify-end gap-2 px-6 pb-6"
+          className="absolute z-10 flex flex-wrap items-center justify-end gap-2 px-6 pb-6"
         >
           <span className="flex items-center gap-2 rounded-full border border-[#D1D5DB] bg-white/95 px-3 py-1 text-xs text-foreground shadow-sm">
             <svg
