@@ -95,7 +95,7 @@ export default function SuccessStoryDetailView({
 
   return (
     <div
-      className={`relative mx-auto w-full max-w-[1366px] ${
+      className={`relative mx-auto w-full ${
         className ? className : ""
       }`}
     >
@@ -148,7 +148,7 @@ export default function SuccessStoryDetailView({
 
         {/* <div className="relative z-10 flex flex-col gap-6 px-6 pb-10 pt-6 lg:flex-row"> */}
         <div className="relative z-10 flex flex-col gap-6 lg:flex-row">
-          <aside className="flex w-full max-w-[454px] flex-shrink-0 flex-col gap-5">
+          <aside className="flex w-full max-w-[454px] flex-shrink-0 flex-col">
             <EmployeeProfileCard
               name={story.name}
               careerJourney={story.careerJourney}
@@ -171,7 +171,7 @@ export default function SuccessStoryDetailView({
             )} */}
           </aside>
 
-          <div className="flex flex-1 items-stretch justify-center lg:pl-4">
+          <div className="flex flex-1 items-stretch justify-center detail-viewport-padding">
             <div className="flex w-full max-w-[1003px] items-center justify-center">
               <CareerJourneyVisualization storyData={story} />
             </div>
@@ -180,7 +180,8 @@ export default function SuccessStoryDetailView({
 
         <div
           ref={entityBarRef}
-          className="absolute z-10 flex flex-wrap items-center justify-end gap-2 px-6 pb-6"
+          // className="absolute z-10 flex flex-wrap items-center justify-end gap-2 px-6 pb-6"
+          className="absolute z-1 flex flex-wrap items-center justify-end gap-2 mt-10 w-full"
         >
           <span className="flex items-center gap-2 rounded-full border border-[#D1D5DB] bg-white/95 px-3 py-1 text-xs text-foreground shadow-sm">
             <svg
