@@ -374,15 +374,27 @@ a[href*="AdminRecycleBin.aspx"] span.ms-HorizontalNavItem-linkText {
 /* detail-viewport-padding: applies pl-4 on large screens (1024-1279px)
    and pl-72 on extra-large screens (>=1280px). Use this class where
    Tailwind breakpoint utilities are behaving inconsistently. */
-.detail-viewport-padding {
+/* .detail-viewport-padding {
   padding-left: 0;
-}
+} */
 
 /* @media (min-width: 1024px) and (max-width: 1279px) {
   .detail-viewport-padding { padding-left: 1rem; }  */
   /* lg:pl-4 */
 /* } */
 
-@media (min-width: 1536px) {
-  .detail-viewport-padding { padding-left: 18rem; } /* xl:pl-72 */
+/* @media (min-width: 1536px) {
+  .detail-viewport-padding { padding-left: 18rem; }  */
+  /* xl:pl-72 */
+/* } */
+
+.detail-viewport-padding {
+  /* Fluid left padding that scales with viewport width
+     - min: 0rem on very small screens
+     - fluid: ~6vw as screen grows
+     - max: 18rem (matches previous xl:pl-72)
+  */
+  padding-left: clamp(0rem, 6vw, 18rem);
+  /* Respect iOS safe areas while keeping fluid behavior */
+  padding-left: max(env(safe-area-inset-left, 0px), clamp(0rem, 6vw, 18rem));
 }
